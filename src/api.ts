@@ -31,14 +31,20 @@ async function fetchItemsData
   ( payloadProduct, 
     payloadLocation, 
     payloadQualities);
-    
-  const fetchedActionResult: Response = await fetch(payload, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
-  const productsFetched: ProductFromAPI[] = await fetchedActionResult.json();
+  
+  try {
+    const fetchedActionResult: Response = await fetch(payload, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
 
-  return productsFetched;
+    const productsFetched: ProductFromAPI[] = await fetchedActionResult.json();
+
+    return productsFetched;
+  } catch (error) {
+    console.log(error.message);
+    Deno.exit(0);
+  }
 }

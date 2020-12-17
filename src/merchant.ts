@@ -1,4 +1,4 @@
-import Denomander from '../../../Github/denomander/denomander/mod.ts';
+import Denomander from '/local/Denomander/mod.ts';
 import {main} from './mod.ts';
 
 const program = new Denomander({
@@ -18,8 +18,9 @@ program
     main(program);
   })
   .parse(Deno.args);
-} catch(error: any) {
-  console.log(error);
+} catch(error) {
+  console.log(error.message);
+  Deno.exit(1);
 }
 
 /*const listOfItensFetchedFromApi = await fetchProducts

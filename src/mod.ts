@@ -3,7 +3,7 @@
  */
 import {orderProductsByPrice, orderProductsByQuality} from '../src/analysis.ts';
 import {fetchProducts} from '../src/api.ts';
-import Denomander from "/local/denomander/repo";
+import Denomander from '../../../Github/denomander/denomander/mod.ts';
 import {Product, Order, ProductFromAPI} from './types.d.ts';
 
 function orderAnalisys
@@ -49,11 +49,12 @@ export async function request
 }
 
 export async function show(product: Product) {
+  try {
     console.log('Making the resquest to the server...');
   const result: ProductFromAPI[] = await request(product);
     console.clear();
     console.log(`Items ordened by ${product.order}`);
-  result?.map((item: ProductFromAPI) => {
+  return result?.map((item: ProductFromAPI) => {
     console.log(`\r\nItem ${item!.item_id}`);
     console.log(`Quality ${item.quality}`);
     console.log(`at ${item.city}`);
@@ -62,6 +63,10 @@ export async function show(product: Product) {
     console.log(`Minimun buy price: ${item.buy_price_min}`);
     console.log(`Maximun buy price: ${item.buy_price_max}`);
   })
+  } catch(error) {
+    console.error(error.message);
+    Deno.exit(1);
+  }
 }
 
 export function main(program: Denomander) {
