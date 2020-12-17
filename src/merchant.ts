@@ -1,7 +1,26 @@
-import {orderProductsByPrice, orderProductsByQuality} from '../src/analysis.ts';
-import {fetchProducts, IProduct} from '../src/api.ts';
-import {parse, Args} from '../deps.ts';
-import {Command, Commander, CommanderInfo} from '../src/commander.ts';
+import Denomander from '../../../Github/denomander/denomander/mod.ts';
+import {main} from './mod.ts';
+
+const program = new Denomander({
+  app_name: "Merchant",
+  app_version: "1.0.0",
+  app_description: "Albion Online trader helper"
+});
+
+try {
+program
+  .command("product", "Show information about items")
+  .requiredOption("-n, --name", "Name of the product")
+  .requiredOption("-q, --qualities", "Item qualities")
+  .requiredOption("-c, --cities", "Name of the cities")
+  .option("-o, --order", "Order the result by: [price | qualities]")
+  .action(() => {
+    main(program);
+  })
+  .parse(Deno.args);
+} catch(error: any) {
+  console.log(error);
+}
 
 /*const listOfItensFetchedFromApi = await fetchProducts
   (
@@ -13,6 +32,8 @@ import {Command, Commander, CommanderInfo} from '../src/commander.ts';
     'Thetford',
     'Lymhurst']
    );*/
+  
+/*
 const merchant: CommanderInfo = {
   name: 'merchant',
   description: 'Albion trade assistence',
@@ -22,6 +43,12 @@ const merchant: CommanderInfo = {
 
 const args = parse(Deno.args);
 ((args) => {
+  const nothing: Command = {
+    name: 'e', 
+    action: () => {
+      console.log("--help to see command what will help");
+    }
+  }
   const help: Command = {
     name: 'help',
     action: () => {
@@ -112,13 +139,11 @@ const args = parse(Deno.args);
   // ------------------------------------------------->
 
   const commander = new Commander(args);
+  commander.define(nothing);
   commander.define(help);
   commander.define(version);
   commander.define(product);
 
   commander.watch();
 })(args)
-
-
-
-
+*/

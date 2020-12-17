@@ -1,24 +1,21 @@
+import {ProductFromAPI, Product} from './types.d.ts';
 export async function fetchProducts
   (
-    productsName: string,
-    productQualities: string,
-    citiesFromProducts: string
-  ): Promise<IProduct[]> {
-  const productsFetched: IProduct[] = await fetchItemsData(productsName, productQualities, citiesFromProducts);
+    product: Product
+  ): Promise<ProductFromAPI[]> {
+  const productsFetched: ProductFromAPI[] = await fetchItemsData(product);
   
   return productsFetched;
 }
 
 async function fetchItemsData
   (
-    productsName: string,
-    productQualities: string,
-    citiesFromProducts: string
-  ): Promise<IProduct[]> {
+    product: Product
+  ): Promise<ProductFromAPI[]> {
   
-  const payloadProduct: string = `https://www.albion-online-data.com/api/v2/stats/prices/${productsName}`;
-  const payloadLocation: string = `?locations=${citiesFromProducts}`;
-  const payloadQualities: string = `&qualities=${productQualities}`;
+  const payloadProduct: string = `https://www.albion-online-data.com/api/v2/stats/prices/${product.name.toString()}`;
+  const payloadLocation: string = `?locations=${product.cities.toString()}`;
+  const payloadQualities: string = `&qualities=${product.qualities.toString()}`;
 
   const createPayload = (...args: any[]) => {
     let payload: string = '';
@@ -41,21 +38,7 @@ async function fetchItemsData
       "Content-Type": "application/json"
     }
   });
-  const productsFetched: IProduct[] = await fetchedActionResult.json();
+  const productsFetched: ProductFromAPI[] = await fetchedActionResult.json();
 
   return productsFetched;
-}
-
-export interface IProduct {
-  item_id: string,
-  city: string,
-  quality: number,
-  sell_price_min: number,
-  sell_price_min_date: string,
-  sell_price_max: number,
-  sell_price_max_date: string,
-  buy_price_min: number,
-  buy_price_min_date: string,
-  buy_price_max: number,
-  buy_price_max_date: string
 }
