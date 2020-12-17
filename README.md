@@ -11,12 +11,7 @@ It uses the public API from [Albion Online Data](https://www.albion-online-data.
 
 
 ## How to use
-It's possible to install using Deno:
-```bash
-deno install --allow-net merchant.js
-```
-
-After that, the call "merchant" is available in the terminal
+A binary called "merchant" is available from the root of project
 
 ```bash
 Merchant
@@ -36,13 +31,13 @@ product          Show information about items
 
 Basic usage
 ```bash
-merchant product -n T4_BAG -q 3,4 -c martlock,bridgewatch
+./merchant product -n T4_BAG -q 3,4 -c martlock,bridgewatch
 ```
 Organize the output by price
 ```bash
-merchant product -n T4_BAG,T5_BAG,T6_BAG -q 3,4,5 -c martlock,bridgewatch --order price
+./merchant product -n T4_BAG,T5_BAG,T6_BAG -q 3,4,5 -c martlock,bridgewatch --order price
 ```
 With default params
 ```bash
-merchant product -n T4_BAG,T5_BAG 
+./merchant product -n T4_BAG,T5_BAG 
 ```
