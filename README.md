@@ -1,5 +1,7 @@
 # Merchant
 
+![Merchant logo](https://i.imgur.com/QGsGqfh.png)
+
 ## Albion Online trader helper
 
 This a simple tool to compare item's price and help Albion's trader to be more
