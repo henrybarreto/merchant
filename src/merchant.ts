@@ -12,8 +12,8 @@ try {
   program
     .command("product", "Show information about items")
     .requiredOption("-n, --name", "Name of the product")
-    .requiredOption("-q, --qualities", "Item qualities")
-    .requiredOption("-c, --cities", "Name of the cities")
+    .option("-q, --qualities", "Item qualities")
+    .option("-c, --cities", "Name of the cities")
     .option("-o, --order", "Order the result by: [price | qualities]")
     .action(() => {
       main(program);
