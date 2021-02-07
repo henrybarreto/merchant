@@ -1,8 +1,9 @@
 import { Product, ProductFromAPI } from "./types.ts";
-
+ 
 /**
  * Fetch products from the API
- * @param product 
+ * @param  {Product} product
+ * @returns Promise<ProductFromApi[]>
  */
 export async function fetchProducts(
   product: Product,
@@ -14,15 +15,16 @@ export async function fetchProducts(
 
 /**
  * Fetch item's data direct from the API
- * @param product 
+ * @param  {Product} product
+ * @returns Promise<ProductFromApi[]>
  */
 async function fetchItemsData(
   product: Product,
 ): Promise<ProductFromAPI[]> {
   const payloadProduct: string =
     `https://www.albion-online-data.com/api/v2/stats/prices/${product.name.toString()}`;
-  const payloadLocation: string = `?locations=${product.cities.toString()}`;
-  const payloadQualities: string = `&qualities=${product.qualities.toString()}`;
+  const payloadLocation: string = `?locations=${product.cities?.toString()}`;
+  const payloadQualities: string = `&qualities=${product.qualities?.toString()}`;
 
   const createPayload = (...args: any[]) => {
     let payload: string = "";

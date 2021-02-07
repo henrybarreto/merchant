@@ -5,8 +5,9 @@ import {
   orderProductsByQuality,
 } from "../src/analysis.ts";
 import { fetchProducts } from "../src/api.ts";
-import { Order, Product } from "./types.ts";
+import { Cities, Order, Product } from "./types.ts";
 import { showProducts } from "./interface.ts";
+import { ProductValidate } from "./validator.ts";
 
 /**
  * Get the a product from the api and return a product orderned by something
@@ -14,9 +15,9 @@ import { showProducts } from "./interface.ts";
  */
 export async function getProduct({
   name,
-  qualities = "1,2,3,4,5",
-  cities = ["martlock", "thetford", "lymhurst", "fortsterling", "bridgewatch"],
-  order = Order.PRICE,
+  qualities = ['1','2','3','4','5'],
+  cities = [Cities.Thetford, Cities.Martlock, Cities.Lymhurst, Cities.Fortsterling, Cities.Bridgewatch],
+  order = Order.Price,
 }: Product) {
   if (typeof name == "boolean") {
     throw new Error("A item's name is required!");
@@ -29,23 +30,29 @@ export async function getProduct({
     order,
   };
 
-  return orderAnalisys(order, [Order.PRICE, async () => {
+  return orderAnalisys(order, [Order.Price, async () => {
     return orderProductsByPrice(await fetchProducts(product));
-  }], [Order.QUALITY, async () => {
+  }], [Order.Quality, async () => {
     return orderProductsByQuality(await fetchProducts(product));
   }]);
 }
 
-/**
+/**   
  * Main function of the program
  * @param program 
  */
-export function main(program: Denomander) {
-  const { name, qualities, cities, order } = program;
-  showProducts({
-    name,
-    qualities,
-    cities,
-    order,
-  });
+export async function main(program: Denomander) {
+  try {
+    const { name, qualities, cities, order } = program;
+
+    const productValidated: Product = new ProductValidate({
+      name,
+      qualities, 
+      cities, 
+      order
+    });
+    showProducts(productValidated);
+  } catch(error) {
+    console.error(error);
+  }
 }

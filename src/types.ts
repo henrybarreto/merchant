@@ -1,19 +1,20 @@
 /**
  *  Valid cities form Albion
  */
-export type Cities =
-  | "martlock"
-  | "bridgewatch"
-  | "thetford"
-  | "fortsterling"
-  | "lymhurst";
+export enum Cities {
+  Martlock = "martlock",
+  Bridgewatch = "bridgewatch",
+  Thetford = "thetford",
+  Fortsterling =  "fortsterling",
+  Lymhurst = "lymhurst"
+}
 
 /**
  *  Ways to order the output from API 
  */
 export enum Order {
-  PRICE = "price",
-  QUALITY = "quality",
+  Price = "price",
+  Quality = "quality",
 }
 
 /**
@@ -37,8 +38,8 @@ export interface ProductFromAPI {
  *  Output interface from Merchant
  */
 export interface Product {
-  name: string[] | string;
-  qualities: string[] | string;
-  cities: Cities[] | Cities;
+  name: string[];
+  qualities: string[] | undefined;
+  cities: Cities[] | undefined;
   order: Order;
 }
