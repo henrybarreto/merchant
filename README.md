@@ -1,6 +1,6 @@
 # Merchant
 
-![Merchant logo](https://i.imgur.com/QGsGqfh.png)
+![Merchant logo](https://imgur.com/QGsGqfh)
 
 ## Albion Online trader helper
 
