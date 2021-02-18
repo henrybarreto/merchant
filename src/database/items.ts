@@ -11,11 +11,17 @@ export default class Items {
      * @returns boolean
      */
     public hasProduct(product_name: string): boolean {
-        const rows = this.db.query("SELECT `name` FROM `products` WHERE name LIKE ?", [product_name]);
-        if (rows["_db"]) {
-            return true;
-        } else {
-            return false;
+        try {
+            const rows = this.db.query("SELECT `name` FROM `products` WHERE name LIKE ?", [product_name]);
+            if (rows["_db"]) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("The database maybe not in the same folder of the binary file");
+            console.error("Error: " + error.message);
+            Deno.exit(1);
         }
     }
 }

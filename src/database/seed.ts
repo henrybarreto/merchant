@@ -6,7 +6,7 @@ import Items from "./items.ts";
 try {
     const items = new Items();
     const decoder = new TextDecoder("utf-8");
-    const data = await Deno.readFile("items.json");
+    const data = await Deno.readFile("./src/database/items.json");
     const items_from_json: Array<any> = JSON.parse(decoder.decode(data));
     console.log("Trying to add items to database...");
     items_from_json.map((item: any) => {
