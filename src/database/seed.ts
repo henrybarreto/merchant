@@ -15,6 +15,8 @@ try {
     });
     items.db.close();
     console.log("Items added!");
+    Deno.exit(0);
 } catch(error) {
     console.error(error);
+    Deno.exit(1);
 }
