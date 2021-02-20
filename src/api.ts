@@ -55,6 +55,6 @@ async function fetchItemsData(
     return productsFetched;
   } catch (error) {
     console.log(error.message);
-    Deno.exit(0);
+    Deno.exit(1);
   }
 }

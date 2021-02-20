@@ -6,7 +6,7 @@ import {
 } from "../src/analysis.ts";
 import { fetchProducts } from "../src/api.ts";
 import { Cities, Order, Product } from "./types.ts";
-import { showProducts } from "./interface.ts";
+import Interface from "./interface.ts";
 import { ProductValidate } from "./validator.ts";
 
 /**
@@ -51,7 +51,7 @@ export async function main(program: Denomander) {
       cities, 
       order
     });
-    showProducts(productValidated);
+    Interface.showProducts(productValidated);
   } catch(error) {
     console.error(error);
   }
