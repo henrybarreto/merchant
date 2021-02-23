@@ -34,9 +34,6 @@ jobs:
 
       - name: Cache Dependencies
         run: deno cache deps.ts
-
-      - name: Run Tests
-        run: deno test -A --unstable
       
-      - name: compile
+      - name: Compile
         run: deno compile --unstable --lite --output bin/merchant --allow-all src/cli.ts
