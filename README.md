@@ -13,11 +13,9 @@ try to compare them.
 
 ## About the code
 
-- I make it with the possibilities of unit tests, but i doesn't implement that
+- I make it with the possibilities of unit and integration tests, but i doesn't implement that
   yet, but as soon as i can, i will do that.
-- I also have in mind to abstract the name of cities to remove the needed to
-  write the all name to the API.
-- Error handling is still not working, so error with pass through
+- I will check and validate the qualities and cities as soon as possible in the cli
 
 ## How to use
 
@@ -35,7 +33,7 @@ Options:
 -V --version     Version
 
 Commands:
-product          Show information about items
+product          Show information about a product
 ```
 
 ### Example
@@ -55,5 +53,5 @@ Organize the output by price
 With default params
 
 ```bash
-./merchant product -n T4_BAG,T5_BAG
+./merchant product -n T4_BAG
 ```

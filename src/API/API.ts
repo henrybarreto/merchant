@@ -29,7 +29,6 @@ export default class API {
         payloadLocation,
         payloadQualities,
       );
-      console.log(payload);
 
       const fetchedActionResult: Response = await fetch(payload, {
         method: "GET",
