@@ -1,12 +1,12 @@
 /**
  *  Valid cities form Albion
  */
-export enum Cities {
+export enum City {
   Martlock = "martlock",
   Bridgewatch = "bridgewatch",
   Thetford = "thetford",
-  Fortsterling =  "fortsterling",
-  Lymhurst = "lymhurst"
+  Fortsterling = "fortsterling",
+  Lymhurst = "lymhurst",
 }
 
 /**
@@ -20,7 +20,7 @@ export enum Order {
 /**
  *  Output interface from API
  */
-export interface ProductFromAPI {
+export interface ProductAPI {
   item_id: string;
   city: string;
   quality: number;
@@ -40,6 +40,6 @@ export interface ProductFromAPI {
 export interface Product {
   name: string[];
   qualities: string[] | undefined;
-  cities: Cities[] | undefined;
+  cities: City[] | undefined;
   order: Order;
 }

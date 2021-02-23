@@ -1,4 +1,4 @@
-import Denomander from "https://deno.land/x/denomander@0.8.0/mod.ts";
+/*import Denomander from "https://deno.land/x/denomander@0.8.0/mod.ts";
 import {
   orderAnalisys,
   orderProductsByPrice,
@@ -8,11 +8,14 @@ import { fetchProducts } from "../src/api.ts";
 import { Cities, Order, Product } from "./types.ts";
 import Interface from "./interface.ts";
 import { ProductValidate } from "./validator.ts";
+import API from "./product/API/API.ts";
 
 /**
  * Get the a product from the api and return a product orderned by something
  * @param {Product} param0 Product to send to API
  */
+
+ /*
 export async function getProduct({
   name,
   qualities = ['1','2','3','4','5'],
@@ -29,9 +32,8 @@ export async function getProduct({
     cities,
     order,
   };
-
   return orderAnalisys(order, [Order.Price, async () => {
-    return orderProductsByPrice(await fetchProducts(product));
+    return orderProductsByPrice(await api);
   }], [Order.Quality, async () => {
     return orderProductsByQuality(await fetchProducts(product));
   }]);
@@ -41,6 +43,8 @@ export async function getProduct({
  * Main function of the program
  * @param program 
  */
+
+ /*
 export async function main(program: Denomander) {
   try {
     const { name, qualities, cities, order } = program;
@@ -56,3 +60,4 @@ export async function main(program: Denomander) {
     console.error(error);
   }
 }
+*/

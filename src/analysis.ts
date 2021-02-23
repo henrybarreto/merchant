@@ -1,4 +1,5 @@
-import { Order, ProductFromAPI } from "./types.ts";
+import { IProductAPI } from "./product/ProductAPI.ts";
+import { Order } from "./types.ts";
 
 /**
  * Return a pecentage from a number over another
@@ -11,9 +12,9 @@ function percentOver(from: number, to: number): number {
 
 /**
  * Return a list of products ordened by price
- * @param {ProductFromAPI[]} productList 
+ * @param {IProductAPI[]} productList 
  */
-export function orderProductsByPrice(productList: ProductFromAPI[]) {
+export function orderProductsByPrice(productList: IProductAPI[]) {
   return productList.sort((a, b) => {
     return (a.sell_price_min > b.sell_price_min ? 1 : -1);
   });
@@ -21,9 +22,9 @@ export function orderProductsByPrice(productList: ProductFromAPI[]) {
 
 /**
  * Return a list of products ordened by quality
- * @param {ProductFromAPI[]} productList 
+ * @param {IProductAPI[]} productList 
  */
-export function orderProductsByQuality(productList: ProductFromAPI[]) {
+export function orderProductsByQuality(productList: IProductAPI[]) {
   return productList.sort((a, b) => {
     return (a.quality > b.quality ? 1 : -1);
   });
@@ -31,24 +32,24 @@ export function orderProductsByQuality(productList: ProductFromAPI[]) {
 
 /**
  * Return a percentage from a product over another
- * @param {ProductFromAPI} productOne 
- * @param {ProductFromAPI} productTwo 
+ * @param {IProductAPI} productOne 
+ * @param {IProductAPI} productTwo 
  */
 export function percentOverProduct(
-  productOne: ProductFromAPI,
-  productTwo: ProductFromAPI,
+  productOne: IProductAPI,
+  productTwo: IProductAPI,
 ) {
   return percentOver(productOne.sell_price_min, productTwo.sell_price_min);
 }
 
 /**
  * Return a percentage from a product over a list of product
- * @param {ProductFromAPI} product 
- * @param {ProductFromAPI[]} productList 
+ * @param {IProductAPI} product 
+ * @param {IProductAPI[]} productList 
  */
 export function percentOverListOfProducts(
-  product: ProductFromAPI,
-  productList: ProductFromAPI[],
+  product: IProductAPI,
+  productList: IProductAPI[],
 ) {
   return productList.map((productFromList) => {
     return percentOver(product.sell_price_min, productFromList.sell_price_min);
@@ -58,10 +59,10 @@ export function percentOverListOfProducts(
 /**
  * Return a ordened list of Products based in a tuple of a Order and a function
  * @param {Order} order 
- * @param {[Order, () => Promise<ProductFromAPI[]>]} pairs 
+ * @param {[Order, () => Promise<IProductAPI[]>]} pairs 
  */
 export function orderAnalisys<
-  F extends () => Promise<ProductFromAPI[]>,
+  F extends () => Promise<IProductAPI[]>,
   P extends [OrderPair: Order, fn: F],
 >(order: Order, ...pairs: P[]): any {
   const pair = pairs.reduce((accPair: P, currentPair: P) => {
@@ -73,6 +74,3 @@ export function orderAnalisys<
 
   return pair[1]();
 }
-
-export function freeFee(product: ProductFromAPI) {}
-export function premiumFee(product: ProductFromAPI) {}
