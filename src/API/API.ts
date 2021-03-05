@@ -1,5 +1,5 @@
-import { IProduct } from "../product/Product.ts";
-import { IProductAPI } from "../product/ProductAPI.ts";
+import { IProduct } from "../product/IProduct.ts";
+import { IProductAPI } from "../product/IProductAPI.ts";
 
 export default class API {
   private URI_API: string =

@@ -1,4 +1,5 @@
-import Product, { IProduct } from "./Product.ts";
+import { IProduct } from "./IProduct.ts";
+import Product from "./Product.ts";
 import ProductValidator from "./ProductValidator.ts";
 
 export default class ProductBuilder {

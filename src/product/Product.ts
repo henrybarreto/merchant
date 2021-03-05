@@ -1,10 +1,5 @@
-import { City, Order } from "../types.ts";
-
-export interface IProduct {
-  name: string;
-  qualities: string | Set<string>;
-  city: City | Set<City>;
-}
+import { City } from "../types.ts";
+import { IProduct } from "./IProduct.ts";
 
 export default class Product implements IProduct {
   public name: string;

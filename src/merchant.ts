@@ -1,6 +1,6 @@
 import Denomander from "../deps.ts";
 import CommandShow from "./commands/CommandShow.ts";
-import { IProduct } from "./product/Product.ts";
+import { IProduct } from "./product/IProduct.ts";
 import ProductBuilder from "./product/ProductBuilder.ts";
 import { Order } from "./types.ts";
 
@@ -42,8 +42,8 @@ export default class Merchant {
         if (!order) { // Fix
           return deafultOrder;
         } else {
-          if(order == Order.Price || order == Order.Quality) {
-            return order   
+          if (order == Order.Price || order == Order.Quality) {
+            return order;
           }
           throw new Error("Order is invalid");
         }

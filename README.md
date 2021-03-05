@@ -13,9 +13,10 @@ try to compare them.
 
 ## About the code
 
-- I make it with the possibilities of unit and integration tests, but i doesn't implement that
-  yet, but as soon as i can, i will do that.
-- I will check and validate the qualities and cities as soon as possible in the cli
+- I make it with the possibilities of unit and integration tests, but i doesn't
+  implement that yet, but as soon as i can, i will do that.
+- I will check and validate the qualities and cities as soon as possible in the
+  cli
 
 ## How to use
 

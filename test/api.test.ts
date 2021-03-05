@@ -1,17 +1,16 @@
-import { fetchProducts } from "../src/api.ts";
-import { Order } from "../src/types.ts";
+import API from "../src/API/API.ts";
+import { City, Order } from "../src/types.ts";
 
-Deno.test("Testing the public API to catch data about the products", async () => {
-  await fetchProducts({
+Deno.test("Testing the public API to catch data about the product", async () => {
+  let api = new API();
+  await api.fetchProduct({
     name: "T4_BAG",
-    qualities: "1,2",
-    cities: "martlock",
-    order: Order.PRICE,
+    qualities: new Set(["1", "2"]),
+    city: City.Martlock,
   });
-  await fetchProducts({
-    name: ["T4_BAG", "T5_BAG"],
-    qualities: "1,2,3,4",
-    cities: ["martlock", "bridgewatch"],
-    order: Order.PRICE,
+  await api.fetchProduct({
+    name: "T4_BAG",
+    qualities: "4",
+    city: new Set([City.Martlock, City.Bridgewatch]),
   });
 });

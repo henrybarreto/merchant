@@ -1,4 +1,4 @@
-import { IProductAPI } from "./product/ProductAPI.ts";
+import { IProductAPI } from "./product/IProductAPI.ts";
 import { Order } from "./types.ts";
 
 /**
