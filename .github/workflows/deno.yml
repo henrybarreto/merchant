@@ -36,6 +36,3 @@ jobs:
 
       - name: Cache Dependencies
         run: deno cache deps.ts
-      
-      - name: Test
-        run: deno test
