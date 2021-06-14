@@ -1,7 +1,7 @@
 import Items from "./items.ts";
 
 /**
- * Insert products from json fiel to sqlite database
+ * Insert products from json file to sqlite database
  */
 try {
   const items = new Items();
