@@ -40,7 +40,6 @@ export default class SqliteDatabase extends Database<DB> {
         "SELECT `name` FROM `products` WHERE name LIKE ?",
         ...data
       );
-      console.log(rows)
       if (rows["_db"]) {
         return rows;
       } else {
