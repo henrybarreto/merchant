@@ -25,7 +25,7 @@ export default class SqliteDatabase extends Database<DB> {
   public execute(query_to_execute: string): void {
     try {
       const rows = this.database_connection.query(
-        "SELECT `name` FROM `products` WHERE name LIKE ?"
+        query_to_execute
       );
     } catch (error) {
       console.error("Could not execute in the database!");

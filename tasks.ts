@@ -5,13 +5,12 @@ task("compile", [], async () => {
   sh(
     "deno compile --unstable --output ./bin/merchant --allow-all ./src/cli.ts",
   );
-  sh("cp --force ./merchant.db ./bin");
 });
 
 desc("Creating database table and seeding it");
 task("database", [], async () => {
   sh(
-    "deno run --allow-all ./src/migrations/create.ts && deno run --allow-all ./src/migrations/seed.ts",
+    "deno run --allow-all ./src/migrations/create.ts && deno run --allow-all ./src/migrations/seed.ts && mv ./merchant.db ./bin",
   );
 });
 

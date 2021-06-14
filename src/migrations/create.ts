@@ -7,7 +7,7 @@ import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
 try {
   console.log("Trying to create the table...");
   const database = new SqliteDatabase("./merchant.db");
-  const action = new SqliteActions(database).createTableProduct();
+  const action = new SqliteActions(database).createTableProducts();
 
   database.disconnect();
   console.log("Table created!");
