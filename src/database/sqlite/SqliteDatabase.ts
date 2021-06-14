@@ -39,8 +39,8 @@ export default class SqliteDatabase extends Database<DB> {
       const rows = this.database_connection.query(
         "SELECT `name` FROM `products` WHERE name LIKE ?",
         ...data
-      );
-      if (rows["_db"]) {
+      ).asObjects();
+      if (rows) {
         return rows;
       } else {
         return undefined;

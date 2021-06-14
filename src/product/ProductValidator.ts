@@ -8,7 +8,11 @@ export default class ProductValidator {
      * @returns string[]
      */
   public static validateName(name: string): string {
-    if (new SqliteActions(new SqliteDatabase("./merchant.db")).hasProduct(name)) { //TODO
+    let database = new SqliteDatabase("./merchant.db");
+    let actions = new SqliteActions(database);
+    let result = actions.hasProduct(name);
+    database.disconnect();
+    if (result) { //TODO
       return name;
     } else {
       throw new Error("The product name is invalid!: " + name);
