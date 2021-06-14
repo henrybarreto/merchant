@@ -1,15 +1,15 @@
-import Items from "../database/Items.ts";
+import SqliteActions from "../database/sqlite/SqliteActions.ts";
+import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
 
 /**
  * Create a table to the sqlite database
  */
 try {
-  const items = new Items();
   console.log("Trying to create the table...");
-  items.db.query(
-    "CREATE TABLE `products` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255))",
-  );
-  items.db.close();
+  const database = new SqliteDatabase("./merchant.db");
+  const action = new SqliteActions(database).createTableProduct();
+
+  database.disconnect();
   console.log("Table created!");
   Deno.exit(0);
 } catch (error) {

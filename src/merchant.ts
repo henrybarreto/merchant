@@ -36,7 +36,7 @@ export default class Merchant {
   public async checkProduct(programArgs: Denomander) {
     try {
       let program = programArgs;
-      //---
+      //--- Clean code cry's
       let validOrder = (order: string) => {
         let deafultOrder: Order = Order.Price;
         if (!order) { // Fix

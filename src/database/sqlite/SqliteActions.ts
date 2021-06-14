@@ -20,4 +20,24 @@ export default class SqliteActions extends DatabaseActions<DB> {
       Deno.exit(1);
     }
   }
+
+  public createTableProducts(): void {
+    try {
+      const product_table = this.database.execute(
+        "CREATE TABLE `products` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255))"
+      );
+    } catch (error) {
+      console.error("Error: " + error.message);
+      Deno.exit(1); 
+    }
+  }
+
+  public insertProductToProducts(item_name: string) {
+    try {
+      const product_table = this.database.query("INSERT INTO `products` (name) VALUES (?)", [item_name]);
+    } catch (error) {
+      console.error("Error: " + error.message);
+      Deno.exit(1); 
+    }
+  }
 }

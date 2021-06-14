@@ -6,4 +6,5 @@ export default abstract class DatabaseActions<D> {
     this.database = database;  
   }
   public abstract hasProduct(product_name: string): boolean;
+  public abstract createTableProducts(): void;
 }

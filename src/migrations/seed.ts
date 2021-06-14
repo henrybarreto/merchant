@@ -1,19 +1,21 @@
-import Items from "./items.ts";
+import SqliteActions from "../database/sqlite/SqliteActions.ts";
+import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
 
 /**
  * Insert products from json file to sqlite database
  */
 try {
-  const items = new Items();
+  const database = new SqliteDatabase("./merchant.db");
+  const action = new SqliteActions(database);
   const decoder = new TextDecoder("utf-8");
   const data = await Deno.readFile("./src/database/items.json");
   const items_from_json: Array<any> = JSON.parse(decoder.decode(data));
   console.log("Trying to add items to database...");
   items_from_json.map((item: any) => {
     const item_name = item["UniqueName"];
-    items.db.query("INSERT INTO `products` (name) VALUES (?)", [item_name]);
+    action.insertProductToProducts(item_name);
   });
-  items.db.close();
+  database.disconnect();
   console.log("Items added!");
   Deno.exit(0);
 } catch (error) {

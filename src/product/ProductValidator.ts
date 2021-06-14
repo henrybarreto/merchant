@@ -1,4 +1,5 @@
-import Database from "../database/Database.ts";
+import SqliteActions from "../database/sqlite/SqliteActions.ts";
+import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
 import { City, Order } from "../types.ts";
 
 export default class ProductValidator {
@@ -7,7 +8,7 @@ export default class ProductValidator {
      * @returns string[]
      */
   public static validateName(name: string): string {
-    if (new Database().hasProduct(name)) {
+    if (new SqliteActions(new SqliteDatabase("./merchant.db")).hasProduct(name)) { //TODO
       return name;
     } else {
       throw new Error("The product name is invalid!: " + name);
