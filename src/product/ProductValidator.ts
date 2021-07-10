@@ -1,8 +1,9 @@
-import SqliteActions from "../database/sqlite/SqliteActions.ts";
+import SqliteActions from "../database/actions/products/sqlite/SqliteProductsActions.ts";
 import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
 import { City, Order } from "../types.ts";
 
 export default class ProductValidator {
+  private readonly deafultOrder: Order = Order.Price;
   /**
      * @param  {string} names
      * @returns string[]
@@ -10,9 +11,9 @@ export default class ProductValidator {
   public static validateName(name: string): string {
     let database = new SqliteDatabase("./merchant.db");
     let actions = new SqliteActions(database);
-    let result = actions.hasProduct(name);
+    let hasProduct = actions.hasProduct(name);
     database.disconnect();
-    if (result) { //TODO
+    if (hasProduct) { //TODO
       return name;
     } else {
       throw new Error("The product name is invalid!: " + name);
@@ -26,7 +27,6 @@ export default class ProductValidator {
     try {
       if (qualities) {
         let qualitiesSplited: Array<string> = qualities.split(",");
-        console.log(qualitiesSplited);
         let qualitiesSet: Set<string> = new Set(qualitiesSplited);
         return qualitiesSet;
       } else {

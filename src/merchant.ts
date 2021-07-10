@@ -1,4 +1,5 @@
 import Denomander from "../deps.ts";
+import CliValidator from "./cli/CliValidator.ts";
 import CommandShow from "./commands/CommandShow.ts";
 import { IProduct } from "./product/IProduct.ts";
 import ProductBuilder from "./product/ProductBuilder.ts";
@@ -36,28 +37,15 @@ export default class Merchant {
   public async checkProduct(programArgs: Denomander) {
     try {
       let program = programArgs;
-      //--- Clean code cry's
-      let validOrder = (order: string) => {
-        let deafultOrder: Order = Order.Price;
-        if (!order) { // Fix
-          return deafultOrder;
-        } else {
-          if (order == Order.Price || order == Order.Quality) {
-            return order;
-          }
-          throw new Error("Order is invalid");
-        }
-      };
-      program.order = validOrder(program.order);
-      //---
 
-      let b1: ProductBuilder = new ProductBuilder();
-      b1.setName(program.name);
-      b1.setCities(program.cities);
-      b1.setQualities(program.qualities);
-      let p: IProduct = b1.getProduct();
-      console.log(program.order);
-      let command = new CommandShow(p, program.order);
+      let validatedOrder = CliValidator.validateOrder(program.order);
+      
+      let productBuilder: ProductBuilder = new ProductBuilder();
+      productBuilder.setName(program.name);
+      productBuilder.setCities(program.cities);
+      productBuilder.setQualities(program.qualities);
+      let ProductBuilt: IProduct = productBuilder.getProduct();
+      let command = new CommandShow(ProductBuilt, validatedOrder);
       await command.execute();
     } catch (error) {
       console.error(error.message);

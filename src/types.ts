@@ -10,7 +10,7 @@ export enum City {
 }
 
 /**
- *  Ways to order the output from API 
+ *  Ways to order the output from API
  */
 export enum Order {
   Price = "price",

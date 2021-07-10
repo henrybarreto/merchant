@@ -10,7 +10,7 @@ task("compile", [], async () => {
 desc("Creating database table and seeding it");
 task("database", [], async () => {
   sh(
-    "deno run --allow-all ./src/migrations/create.ts && deno run --allow-all ./src/migrations/seed.ts && mv ./merchant.db ./bin",
+    "deno run -A ./src/migrations/create_table_products.ts && deno run -A ./src/migrations/seed_table_products.ts && mv ./merchant.db ./bin",
   );
 });
 

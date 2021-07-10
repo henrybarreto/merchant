@@ -3,8 +3,8 @@ import { Order } from "./types.ts";
 
 /**
  * Return a pecentage from a number over another
- * @param {number} from  
- * @param {number} to 
+ * @param {number} from
+ * @param {number} to
  */
 function percentOver(from: number, to: number): number {
   return ((1 / 100 * (from / to)));
@@ -12,7 +12,7 @@ function percentOver(from: number, to: number): number {
 
 /**
  * Return a list of products ordened by price
- * @param {IProductAPI[]} productList 
+ * @param {IProductAPI[]} productList
  */
 export function orderProductsByPrice(productList: IProductAPI[]) {
   return productList.sort((a, b) => {
@@ -22,7 +22,7 @@ export function orderProductsByPrice(productList: IProductAPI[]) {
 
 /**
  * Return a list of products ordened by quality
- * @param {IProductAPI[]} productList 
+ * @param {IProductAPI[]} productList
  */
 export function orderProductsByQuality(productList: IProductAPI[]) {
   return productList.sort((a, b) => {
@@ -32,8 +32,8 @@ export function orderProductsByQuality(productList: IProductAPI[]) {
 
 /**
  * Return a percentage from a product over another
- * @param {IProductAPI} productOne 
- * @param {IProductAPI} productTwo 
+ * @param {IProductAPI} productOne
+ * @param {IProductAPI} productTwo
  */
 export function percentOverProduct(
   productOne: IProductAPI,
@@ -44,8 +44,8 @@ export function percentOverProduct(
 
 /**
  * Return a percentage from a product over a list of product
- * @param {IProductAPI} product 
- * @param {IProductAPI[]} productList 
+ * @param {IProductAPI} product
+ * @param {IProductAPI[]} productList
  */
 export function percentOverListOfProducts(
   product: IProductAPI,
@@ -58,8 +58,8 @@ export function percentOverListOfProducts(
 
 /**
  * Return a ordened list of Products based in a tuple of a Order and a function
- * @param {Order} order 
- * @param {[Order, () => Promise<IProductAPI[]>]} pairs 
+ * @param {Order} order
+ * @param {[Order, () => Promise<IProductAPI[]>]} pairs
  */
 export function orderAnalisys<
   F extends () => Promise<IProductAPI[]>,
