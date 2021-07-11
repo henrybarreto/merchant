@@ -1,6 +1,6 @@
 import SqliteActions from "../database/actions/products/sqlite/SqliteProductsActions.ts";
 import SqliteDatabase from "../database/sqlite/SqliteDatabase.ts";
-import { City, Order } from "../types.ts";
+import { City, Order, Qualities } from "../types.ts";
 
 export default class ProductValidator {
   private readonly deafultOrder: Order = Order.Price;
@@ -23,17 +23,25 @@ export default class ProductValidator {
      * @param  {string|undefined} qualities
      * @returns string|undefined
      */
-  public static validateQualities(qualities: string): Set<string> {
+  public static validateQualities(qualities: string): Set<Qualities> {
     try {
-      if (qualities) {
-        let qualitiesSplited: Array<string> = qualities.split(",");
-        let qualitiesSet: Set<string> = new Set(qualitiesSplited);
-        return qualitiesSet;
-      } else {
-        return new Set(["1", "2", "3", "4", "5"]);
+      if(qualities.length == 0) {
+        throw Error("Qualities can not be empty");
       }
-    } catch (error) {
-      return new Set([qualities]);
+      let qualitiesSplited: Array<string> = qualities.split(",");
+      let qualitiesArray: Array<Qualities> = qualitiesSplited
+        .map((quality) => Number(quality))
+        .filter((quality) => !isNaN(quality) ? true : false)
+        .filter((quality) => quality <= 0 || quality > 5 ? false : true)
+        .map((quality) => quality as Qualities);
+
+      if(qualitiesArray.length <= 0){
+        throw Error("Qualities needs to be number from 1 to 5");
+      }
+
+      return new Set(qualitiesArray);
+    } catch(error) {
+      return new Set([1,2,3,4,5]);
     }
   }
   /**

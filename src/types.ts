@@ -1,4 +1,9 @@
 /**
+ * Valid product qualities
+ */
+export type Qualities = 1 | 2 | 3 | 4 | 5;
+
+/**
  *  Valid cities form Albion
  */
 export enum City {
