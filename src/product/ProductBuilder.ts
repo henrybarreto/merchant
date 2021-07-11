@@ -11,7 +11,7 @@ export default class ProductBuilder {
     this.product.name = ProductValidator.validateName(name);
   }
   public setCities(city: string) {
-    this.product.city = ProductValidator.validateCity(city);
+    this.product.cities = ProductValidator.validateCities(city);
   }
   public setQualities(qualities: string) {
     this.product.qualities = ProductValidator.validateQualities(qualities);

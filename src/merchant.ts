@@ -39,7 +39,7 @@ export default class Merchant {
       let program = programArgs;
 
       let validatedOrder = CliValidator.validateOrder(program.order);
-      
+
       let productBuilder: ProductBuilder = new ProductBuilder();
       productBuilder.setName(program.name);
       productBuilder.setCities(program.cities);

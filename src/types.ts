@@ -6,7 +6,7 @@ export type Qualities = 1 | 2 | 3 | 4 | 5;
 /**
  *  Valid cities form Albion
  */
-export enum City {
+export enum Cities {
   Martlock = "martlock",
   Bridgewatch = "bridgewatch",
   Thetford = "thetford",
@@ -45,6 +45,6 @@ export interface ProductAPI {
 export interface Product {
   name: string[];
   qualities: string[] | undefined;
-  cities: City[] | undefined;
+  cities: Cities[] | undefined;
   order: Order;
 }

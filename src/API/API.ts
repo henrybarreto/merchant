@@ -19,7 +19,7 @@ export default class API {
   ): Promise<Array<IProductAPI>> {
     try {
       let name = products.name;
-      let cities = Array.from(products.city).join(",");
+      let cities = Array.from(products.cities).join(",");
       let qualities = Array.from(products.qualities).join(",");
       const payloadProduct: string = `${this.URI_API}${name}`;
       const payloadLocation: string = `?locations=${cities}`;

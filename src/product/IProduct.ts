@@ -1,7 +1,7 @@
-import { City, Qualities } from "../types.ts";
+import { Cities, Qualities } from "../types.ts";
 
 export interface IProduct {
   name: String;
   qualities: Set<Qualities>;
-  city: Set<City>;
+  cities: Set<Cities>;
 }
