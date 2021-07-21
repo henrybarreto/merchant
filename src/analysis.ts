@@ -1,4 +1,4 @@
-import { IProductAPI } from "./product/IProductAPI.ts";
+import { IProductAPI } from "./business/product/IProductAPI.ts";
 import { Order } from "./types.ts";
 
 /**
@@ -65,12 +65,7 @@ export function orderAnalisys<
   F extends () => Promise<IProductAPI[]>,
   P extends [OrderPair: Order, fn: F],
 >(order: Order, ...pairs: P[]): any {
-  const pair = pairs.reduce((accPair: P, currentPair: P) => {
-    if (currentPair[0] == order) {
-      return currentPair;
-    }
-    return accPair;
-  });
-
-  return pair[1]();
+  return pairs.reduce((accPair: P, currentPair: P) => {
+    return currentPair[0] == order ? currentPair : accPair;
+  })[1]();
 }

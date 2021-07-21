@@ -1,5 +1,5 @@
-import { assertEquals } from "../../deps.ts";
-import { Cities } from "../types.ts";
+import { assertEquals } from "../../../deps.ts";
+import { Cities } from "../../types.ts";
 import ProductValidator from "./ProductValidator.ts";
 
 Deno.test("Test the validation of the product qualities when values are valid", () => {

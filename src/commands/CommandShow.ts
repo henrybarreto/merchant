@@ -4,8 +4,8 @@ import {
   orderProductsByQuality,
 } from "../analysis.ts";
 import API from "../API/API.ts";
-import { IProduct } from "../product/IProduct.ts";
-import { IProductAPI } from "../product/IProductAPI.ts";
+import { IProduct } from "../business/product/IProduct.ts";
+import { IProductAPI } from "../business/product/IProductAPI.ts";
 import { Order } from "../types.ts";
 import ICommand from "./ICommand.ts";
 

@@ -1,9 +1,7 @@
 import Denomander from "../deps.ts";
 import CliValidator from "./cli/CliValidator.ts";
 import CommandShow from "./commands/CommandShow.ts";
-import { IProduct } from "./product/IProduct.ts";
-import ProductBuilder from "./product/ProductBuilder.ts";
-import { Order } from "./types.ts";
+import ProductBuilder from "./business/product/ProductBuilder.ts";
 
 export default class Merchant {
   public name: string = "Merchant";
@@ -36,19 +34,19 @@ export default class Merchant {
   }
   public async checkProduct(programArgs: Denomander) {
     try {
-      let program = programArgs;
-
-      let validatedOrder = CliValidator.validateOrder(program.order);
-
       let productBuilder: ProductBuilder = new ProductBuilder();
-      productBuilder.setName(program.name);
-      productBuilder.setCities(program.cities);
-      productBuilder.setQualities(program.qualities);
-      let ProductBuilt: IProduct = productBuilder.getProduct();
-      let command = new CommandShow(ProductBuilt, validatedOrder);
-      await command.execute();
+      productBuilder.setName(programArgs.name);
+      productBuilder.setCities(programArgs.cities);
+      productBuilder.setQualities(programArgs.qualities);
+
+      await (new CommandShow(
+        productBuilder.getProduct(),
+        CliValidator.validateOrder(programArgs.order),
+      ))
+        .execute();
     } catch (error) {
       console.error(error.message);
+      Deno.exit(1);
     }
   }
 }

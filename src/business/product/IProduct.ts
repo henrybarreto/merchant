@@ -1,4 +1,4 @@
-import { Cities, Qualities } from "../types.ts";
+import { Cities, Qualities } from "../../types.ts";
 
 export interface IProduct {
   name: String;

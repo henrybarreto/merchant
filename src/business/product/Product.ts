@@ -1,4 +1,4 @@
-import { Cities, Qualities } from "../types.ts";
+import { Cities, Qualities } from "../../types.ts";
 import { IProduct } from "./IProduct.ts";
 
 export default class Product implements IProduct {
