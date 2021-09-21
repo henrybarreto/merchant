@@ -52,9 +52,3 @@ Organize the output by price
 ```bash
 ./merchant product -n T4_BAG,T5_BAG,T6_BAG -q 3,4,5 -c martlock,bridgewatch --order price
 ```
-
-With default params
-
-```bash
-./merchant product -n T4_BAG
-```

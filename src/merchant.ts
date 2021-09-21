@@ -20,8 +20,8 @@ export default class Merchant {
       this.program
         .command("product", "Show information about a product")
         .requiredOption("-n, --name", "Name of the product")
-        .option("-q, --qualities", "Product qualities")
-        .option("-c, --cities", "Name of the cities")
+        .requiredOption("-q, --qualities", "Product qualities")
+        .requiredOption("-c, --cities", "Name of the cities")
         .option("-o, --order", "Order the result by: [price | qualities]")
         .action(() => {
           this.checkProduct(this.program);
