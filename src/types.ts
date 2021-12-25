@@ -1,10 +1,10 @@
 /**
- * Valid product qualities
+ * Albion product's qualities.
  */
 export type Qualities = 1 | 2 | 3 | 4 | 5;
 
 /**
- *  Valid cities form Albion
+ * Albions cities.
  */
 export enum Cities {
   Martlock = "martlock",
@@ -23,7 +23,7 @@ export enum Order {
 }
 
 /**
- *  Output interface from API
+ * Albion's product caracteristics from API.
  */
 export interface ProductAPI {
   item_id: string;
@@ -40,11 +40,10 @@ export interface ProductAPI {
 }
 
 /**
- *  Output interface from Merchant
+ * Albion's product caracteristics.
  */
 export interface Product {
-  name: string[];
-  qualities: string[] | undefined;
-  cities: Cities[] | undefined;
-  order: Order;
+  name: string;
+  qualities: Set<Qualities>;
+  cities: Set<Cities>;
 }

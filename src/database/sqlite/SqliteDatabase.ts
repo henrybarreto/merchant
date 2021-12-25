@@ -36,15 +36,10 @@ export default class SqliteDatabase extends Database<DB> {
   }
   public query(query_to_execute: string, ...data: [any]): any {
     try {
-      const rows = this.database_connection.query(
+      return this.database_connection.query(
         query_to_execute,
         ...data,
-      ).asObjects();
-      if (rows) {
-        return rows;
-      } else {
-        return undefined;
-      }
+      );
     } catch (error) {
       console.error("Could not query in the database!");
       console.error("Error: " + error.message);
